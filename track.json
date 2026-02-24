@@ -6,7 +6,7 @@
       "required": ["index.html", "index.css", "index.js"]
     },
     {
-      "name": "trackada",
+      "name": "trackada-off-perianin",
       "required": ["checktrack.js", "track.json"]
     },
     {

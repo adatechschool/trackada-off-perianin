@@ -20,11 +20,12 @@ if (existsSync(ada)) {
 // Vérifier que les dossiers des projets existent au bon endroit et sont correctement nommés
 //====================================================================================================================
 track.projects.forEach((project) => {
-  console.log(project.name);
-  const findproject = join(ada, "projets");
-  if (existsSync(project.name)) {
-    console.log("✅ dossier du projet <nom_du_projet>");
+  const findproject = join(ada, project.name);
+  if (existsSync(findproject)) {
+    console.log("✅ dossier " + " " + project.name);
   } else {
-    console.log("❌ dossier du projet <nom_du_projet>");
+    console.log("❌ dossier " + " " + project.name);
   }
 });
+// Vérifier que les projets sont bien initialisés comme des projets git
+//=====================================================================================================================
