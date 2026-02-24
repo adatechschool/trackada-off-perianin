@@ -18,14 +18,18 @@ if (existsSync(ada)) {
   console.log("❌ : le dossier ada n'est pas là !");
 }
 // Vérifier que les dossiers des projets existent au bon endroit et sont correctement nommés
+//Première erreur possible, lorsque le dossier du projet n’existe pas ou est mal nommé :
+//- le dossier n'existe pas ou n'est pas nommé correctement
+// Vérifier que les projets sont bien initialisés comme des projets git
+
 //====================================================================================================================
 track.projects.forEach((project) => {
   const findproject = join(ada, project.name);
-  if (existsSync(findproject)) {
+  const findgit = join(ada, project.name, ".git");
+  if (existsSync(findproject, findgit)) {
     console.log("✅ dossier " + " " + project.name);
   } else {
     console.log("❌ dossier " + " " + project.name);
   }
 });
-// Vérifier que les projets sont bien initialisés comme des projets git
 //=====================================================================================================================
