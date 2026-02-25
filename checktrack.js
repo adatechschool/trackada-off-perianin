@@ -41,6 +41,15 @@ track.projects.forEach((project) => {
   } else {
     console.log("- le repository git n'est pas initialisé");
   }
+
+  project.required.forEach((files) => {
+    const findprojectfiles = join(findproject, files);
+    if (existsSync(findprojectfiles)) {
+      console.log("fichier présents");
+    } else {
+      console.log("fichiers manquant: " + files);
+    }
+  });
 });
 
 //=====================================================================================================================
