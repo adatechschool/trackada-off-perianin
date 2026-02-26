@@ -27,56 +27,48 @@ track.projects.forEach((project) => {
   const findproject = join(ada, project.name);
   const findgit = join(ada, project.name, ".git");
   const errors = [];
-  let check = true;
-  if (existsSync(findproject)) {
-    // dossier ok
-  } else {
-    errors.push("- le dossier n'existe pas où n'est pas nommé correctement");
-    check = false;
-  }
-  if (existsSync(findgit)) {
-    // dossier ok
-  } else {
-    errors.push("- le repository git n'est pas initialisé");
-    check = false;
-  }
   const noFile = [];
-  project.required.forEach((file) => {
-    const filePath = join(findproject, file);
-    if (!existsSync(filePath)) {
-      errors.push(file);
-      noFile.push(file);
+  if (existsSync(findproject)) {
+    if (!existsSync(findgit)) {
+      errors.push("- le repository git n'est pas initialisé");
     }
-  });
-  if (errors.length === 0) {
-    console.log("✅ dossier projet " + project.name);
-    check = true;
+    project.required.forEach((file) => {
+      const filePath = join(findproject, file);
+      if (!existsSync(filePath)) {
+        noFile.push(file);
+      }
+    });
   } else {
-    console.log("❌ dossier projet " + project.name);
+    errors.push("- le dossier n'existe pas ou n'est pas nommé correctement");
   }
-
+  if (errors.length === 0 && noFile.length === 0) {
+    console.log("✅ dossier du projet " + project.name);
+  } else {
+    console.log("❌ dossier du projet " + project.name);
+    errors.forEach((error) => {
+      console.log(error);
+    });
+  }
   if (noFile.length === 1) {
-    console.log("- Il manque :" + noFile[0]);
+    console.log("- Il manque : " + noFile[0]);
   } else if (noFile.length > 1) {
     const firstFiles = noFile.slice(0, noFile.length - 1);
     const lastFile = noFile[noFile.length - 1];
     console.log("- Il manque : " + firstFiles.join(", ") + " et " + lastFile);
   }
-  if (check === true) {
+  if (errors.length === 0) {
     correct++;
   }
 });
 const totalProjects = track.projects.length;
-const percentage = (correct / totalProjects) * 100;
+const percentage = Math.round((correct / totalProjects) * 100);
 console.log(
   `${percentage} % des projets sont initialisés correctement (${correct}/${totalProjects})`,
 );
-// ❌ 16% des projets sont initialisés correctement (2/12)
-
+//bien définir les conditions si les dossiers n'existent pas on affiche pas les fichiers manquant juste quand le dossier et same pour le git
 //recueillir toutes les erreurs pour les mettre dans un tableau
 //recueillir dans le tableau erreurs les fichiers et crée un tableau = nofile
 //pourcentage
-//variable des projects good
 //track.projects.length /le nombre de dossier n/10 *100
-//
+//arrondi à l'entier le plus proche avec math.round()
 //=====================================================================================================================
