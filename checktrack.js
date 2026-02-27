@@ -9,9 +9,9 @@ const track = JSON.parse(data);
 const home = homedir();
 const ada = join(home, "Documents", "ada");
 if (existsSync(ada)) {
-  console.log("\x1b[32m" + "✅ dossier ada" + "\x1b[0m" + "\n");
+  console.log("\x1b[1m" + "\x1b[32m" + "✅ dossier ada" + "\x1b[0m" + "\n");
 } else {
-  console.log("\x1b[31m" + "❌ dossier ada" + "\x1b[0m" + "\n");
+  console.log("\x1b[1m" + "\x1b[31m" + "❌ dossier ada" + "\x1b[0m" + "\n");
 }
 // Vérifier que les dossiers des projets existent au bon endroit et sont correctement nommés
 //Première erreur possible, lorsque le dossier du projet n’existe pas ou est mal nommé :
@@ -44,12 +44,10 @@ track.projects.forEach((project) => {
   }
   if (errors.length === 0 && noFile.length === 0) {
     console.log(
-      "\x1b[32m" + "✅ dossier du projet " + project.name + "\x1b[0m",
+      `\x1b[1m \x1b[32m" ✅ dossier du projet ${project.name}\x1b[0m`,
     );
   } else {
-    console.log(
-      "\x1b[31m" + "❌ dossier du projet " + project.name + "\x1b[0m",
-    );
+    console.log(`\x1b[1m \x1b[31m ❌ dossier du projet ${project.name}\x1b[0m`);
     errors.forEach((error) => {
       console.log(error);
     });
@@ -69,6 +67,7 @@ track.projects.forEach((project) => {
 const totalProjects = track.projects.length;
 const percentage = Math.round((correct / totalProjects) * 100);
 console.log(
-  `\x1b[35m ${percentage} % des projets sont initialisés correctement (${correct}/${totalProjects})\x1b[0m`,
+  `\x1b[1m \x1b[35m ${percentage} % des projets sont initialisés correctement (${correct}/${totalProjects})\x1b[0m`,
 );
+
 //=====================================================================================================================================================

@@ -63,7 +63,7 @@ Pour mener à bien ce projet, il est nécessaire de maîtriser :
     [✅] Vérifier que les dossiers des projets existent au bon endroit et sont correctement nommés
     [✅] Vérifier que les projets sont bien initialisés comme des projets git
     [✅] Vérifier que chaque projet contient bien les fichiers requis au bon endroit (le tableau required dans track.json)
-    [❌] Générer le bon affichage pour la commande à partir des informations ci-dessus
+    [✅] Générer le bon affichage pour la commande à partir des informations ci-dessus
 
 Gestion de l’affichage
 
