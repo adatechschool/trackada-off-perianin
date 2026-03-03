@@ -43,9 +43,7 @@ track.projects.forEach((project) => {
     errors.push("- le dossier n'existe pas ou n'est pas nommé correctement");
   }
   if (errors.length === 0 && noFile.length === 0) {
-    console.log(
-      `\x1b[1m \x1b[32m" ✅ dossier du projet ${project.name}\x1b[0m`,
-    );
+    console.log(`\x1b[1m \x1b[32m ✅ dossier du projet ${project.name}\x1b[0m`);
   } else {
     console.log(`\x1b[1m \x1b[31m ❌ dossier du projet ${project.name}\x1b[0m`);
     errors.forEach((error) => {
